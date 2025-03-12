@@ -7,8 +7,5 @@ if __name__ == "__main__":
     # RAM usage analysis on the PC
     for element in object_.return_ram_performance():
         print(element)
-    #
-
-    #
-
-    #
+    # Virtual memory
+    print(object_.return_virtual_memory_usage())

@@ -8,7 +8,7 @@ class PCManager:
 
     def return_cpu_usage(self, seconds:int)->str:
         """
-        Prints the CPU percentage used in x amount of seconds
+        Returns the CPU percentage used in x amount of seconds
         """
         try:
             # Calling psutil.cpu_precent() for x seconds
@@ -16,8 +16,9 @@ class PCManager:
         except Exception as error:
             return "ERROR: {}".format(error)
         
-    def return_ram_performance(self)->list:
+    def return_ram_usage(self)->list:
         """
+        Returns the RAM memory percentage used by the computer
         """
         analysis_information = []
         # Getting all memory using os.popen()
@@ -30,5 +31,11 @@ class PCManager:
         analysis_information.append(object_2)
         return analysis_information
     
+    def return_virtual_memory_usage(self)->str:
+        """
+        Returns the virtual memory used by the computer
+        """
+        memory = "Virtual memory used by the computer: {}".format(self.psutil_.virtual_memory().total / (1024.0 ** 3))
+        return memory
     def __del__(self):
         print("Finished the PC analysis...")
