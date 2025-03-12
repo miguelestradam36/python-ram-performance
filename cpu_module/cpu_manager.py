@@ -25,20 +25,15 @@ class PCManager:
         except Exception as error:
             return "ERROR: {}".format(error)
         
-    def return_ram_usage(self)->list:
+    def return_ram_process_usage(self)->str:
         """
         Returns the RAM memory percentage used by the computer
         """
-        analysis_information = []
-        # Getting all memory using os.popen()
-        total_memory, used_memory, free_memory = map(int, self.os_.popen('free -t -m').readlines()[-1].split()[1:])
-        # Memory usage
-        object_1 = str("Percentage used in the RAM memory of the PC: {}".format(round((used_memory/total_memory) * 100, 2)))
-        # Free memory
-        object_2 = str("Percentage of free RAM memory on the PC: {}".format(round((free_memory) * 100, 2)))
-        analysis_information.append(object_1)
-        analysis_information.append(object_2)
-        return analysis_information
+        try:
+            return "This execution has used a total of: {} MB".format(str(round(self.psutil_.Process().memory_info().rss / (1024 * 1024), 2)))
+        except Exception as error:
+            return "ERROR: {}".format(error)
+
     
     def return_virtual_memory_usage(self)->str:
         """
