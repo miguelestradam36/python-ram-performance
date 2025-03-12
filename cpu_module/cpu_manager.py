@@ -16,6 +16,15 @@ class PCManager:
         except Exception as error:
             return "ERROR: {}".format(error)
         
+    def return_cpu_count(self):
+        """
+        Returns the number of cores in system
+        """
+        try:
+            return "Number of cores in the system: {}".format(self.os_.cpu_count())
+        except Exception as error:
+            return "ERROR: {}".format(error)
+        
     def return_ram_usage(self)->list:
         """
         Returns the RAM memory percentage used by the computer
@@ -35,7 +44,8 @@ class PCManager:
         """
         Returns the virtual memory used by the computer
         """
-        memory = "Virtual memory used by the computer: {}".format(self.psutil_.virtual_memory().total / (1024.0 ** 3))
+        memory = "Virtual memory used by the computer: {}%".format(round(self.psutil_.virtual_memory().total / (1024.0 ** 3), 2))
         return memory
+    
     def __del__(self):
         print("Finished the PC analysis...")
