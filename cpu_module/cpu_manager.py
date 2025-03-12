@@ -1,6 +1,7 @@
 class PCManager:
     # Attributes
     psutil_ = __import__("psutil")
+    os_ = __import__("os")
     # Methods
     def __init__(self):
         print("Starting the PC analysis...")
